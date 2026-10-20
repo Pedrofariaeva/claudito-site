@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claudito — Academic research assistant for LaTeX projects, references and systematic reviews</title>
+<meta name="description" content="Claudito is a free, open-source command-line assistant for academic research. It lives in your project folder: harvests papers from publishers, screens and organises BibTeX references, and builds your LaTeX, Word and PDF documents. Windows, macOS and Linux.">
+<meta name="keywords" content="claudito, latex, academic writing, reference management, bibtex, systematic review, research tools, bibliography, literature review automation">
+<link rel="canonical" href="https://claudito.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Claudito — Academic research assistant">
+<meta property="og:description" content="Harvest papers, manage BibTeX references, build LaTeX/Word/PDF — from your project folder. Free and open source.">
+<meta property="og:url" content="https://claudito.github.io/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Claudito",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Windows, macOS, Linux",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Academic research assistant: paper harvesting, BibTeX reference management, LaTeX/Word/PDF document builds, team sync.",
+  "url": "https://claudito.github.io/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a2332;--muted:#5b6776;--blue:#274E88;--blue-soft:#e8eef7;--line:#dde3ea;--bg:#f7f8fa;--card:#fff;--mono:'IBM Plex Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+nav{border-bottom:1px solid var(--line);background:var(--card)}
+nav .wrap{display:flex;align-items:center;gap:24px;padding:14px 24px}
+.logo{font-weight:700;font-size:20px;color:var(--blue);text-decoration:none}
+nav a{color:var(--muted);text-decoration:none;font-size:14px}
+nav a:hover{color:var(--blue)}
+nav .spacer{flex:1}
+.btn{display:inline-block;background:var(--blue);color:#fff!important;padding:9px 18px;border-radius:6px;font-weight:600;font-size:14px;text-decoration:none}
+.btn:hover{background:#1d3d6b}
+.btn.ghost{background:transparent;color:var(--blue)!important;border:1px solid var(--blue)}
+header.hero{padding:72px 0 48px;text-align:center}
+.hero h1{font-size:42px;line-height:1.15;letter-spacing:-0.5px}
+.hero h1 em{color:var(--blue);font-style:normal}
+.hero p.sub{max-width:640px;margin:18px auto 28px;font-size:18px;color:var(--muted)}
+.hero .cta{display:flex;gap:12px;justify-content:center}
+section{padding:48px 0;border-top:1px solid var(--line)}
+h2{font-size:28px;letter-spacing:-0.3px;margin-bottom:8px}
+.lede{color:var(--muted);max-width:640px;margin-bottom:28px}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#101826;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-frame .play{width:72px;height:72px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center}
+.video-frame .play svg{margin-left:5px}
+.video-frame .cap{color:#93a1b5;font-size:14px}
+.video-note{margin-top:12px;font-size:14px;color:var(--muted)}
+.video-note code{font-family:var(--mono);background:var(--blue-soft);padding:1px 6px;border-radius:4px;font-size:13px}
+.term{background:#0d1420;border-radius:10px;overflow:hidden;box-shadow:0 12px 40px rgba(16,24,40,.25)}
+.term-bar{display:flex;align-items:center;gap:7px;background:#182234;padding:10px 14px}
+.term-bar .dot{width:11px;height:11px;border-radius:50%}
+.term-bar .r{background:#ff5f57}.term-bar .y{background:#febc2e}.term-bar .g{background:#28c840}
+.term-title{margin-left:8px;color:#7c8aa0;font-family:var(--mono);font-size:12px}
+.term-body{padding:18px 20px;height:392px;overflow:hidden;font-family:var(--mono);font-size:13.5px;line-height:1.65;color:#c9d6e8}
+.term-body .tl{white-space:pre-wrap;word-break:break-word}
+.term-body .prompt{color:#28c840;font-weight:600}
+.term-body .dim{color:#6d7d94}
+.term-body .ok{color:#3ddc84}
+.term-body .hi{color:#ffc978}
+.cursor{display:inline-block;width:8px;height:15px;background:#c9d6e8;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media(max-width:700px){.term-body{font-size:11px;height:340px;padding:14px}}
+.install-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media(max-width:700px){.install-grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;min-width:0}
+.card h3{font-size:17px;margin-bottom:10px}
+pre{background:#101826;color:#d5e0ee;padding:14px 16px;border-radius:8px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.5;white-space:pre}
+.hint{font-size:13px;color:var(--muted);margin-top:10px}
+.feat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media(max-width:700px){.feat-grid{grid-template-columns:1fr}}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px}
+.feat h3{font-size:16px;margin-bottom:6px;color:var(--blue)}
+.feat p{font-size:14.5px;color:var(--muted)}
+ol.steps{list-style:none;counter-reset:s}
+ol.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px 16px 58px;position:relative;margin-bottom:12px;font-size:15px}
+ol.steps li::before{content:counter(s);position:absolute;left:16px;top:16px;width:28px;height:28px;border-radius:50%;background:var(--blue-soft);color:var(--blue);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px}
+ol.steps code{font-family:var(--mono);background:var(--blue-soft);padding:1px 6px;border-radius:4px;font-size:13.5px}
+footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);font-size:14px}
+footer a{color:var(--blue);text-decoration:none}
+.kw{font-size:13px;color:var(--muted);margin-top:20px}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="logo" href="#">claudito</a>
+  <a href="#video">Video</a>
+  <a href="#install">Install</a>
+  <a href="#tutorial">First 10 minutes</a>
+  <a href="#features">What it does</a>
+  <span class="spacer"></span>
+  <a class="btn ghost" href="https://github.com/Pedrofariaeva/claudito-releases/releases/latest">Releases</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <h1>Your research project,<br><em>organised by an assistant</em><br>that lives in the folder</h1>
+  <p class="sub">Claudito is a free, open-source <b>command-line</b> assistant for academic research — no web app, no account, no cloud. It harvests papers from publishers, screens and organises your BibTeX references, and builds your LaTeX, Word and PDF documents — inside your project folder, under your control.</p>
+  <div class="cta">
+    <a class="btn" href="#install">Install claudito</a>
+    <a class="btn ghost" href="#video">Watch the 3-minute run</a>
+  </div>
+</div></header>
+
+<section id="video"><div class="wrap">
+  <h2>See it run</h2>
+  <p class="lede">Install to first PDF in three minutes — no configuration, no accounts.</p>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       VIDEO SLOT — the animated terminal below is a stand-in. When the
+       real video is recorded: upload to YouTube, delete the .term block
+       and the <script> at the bottom of this file, and put here:
+
+       <div class="video-frame">
+         <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+                 title="How to install and run claudito"
+                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                 allowfullscreen></iframe>
+       </div>
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="term" id="termDemo" role="img" aria-label="Simulated terminal session: installing a project, harvesting papers, building PDF, Word and slides with plain commands">
+    <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">my-research — clt</span></div>
+    <div class="term-body" id="termBody"></div>
+  </div>
+  <p class="video-note">Live simulation of a real <code>clt</code> session — you type plain commands, claudito handles LaTeX, Word, slides and every format. A recorded video will replace this.</p>
+</div></section>
+
+<section id="install"><div class="wrap">
+  <h2>Install</h2>
+  <p class="lede">One line. The installer tries GitHub first and falls back to the GitLab mirror automatically — use whichever line matches your platform.</p>
+  <div class="install-grid">
+    <div class="card">
+      <h3>Windows (PowerShell)</h3>
+      <pre>[Net.ServicePointManager]::SecurityProtocol='Tls12'; Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force; try { irm https://github.com/Pedrofariaeva/claudito-releases/releases/download/vX.Y.Z/install.ps1 | iex } catch { irm https://gitlab.com/Pedrofariaeva/claudito-releases/-/raw/main/install.ps1 | iex }</pre>
+      <p class="hint">Replace <b>vX.Y.Z</b> with the version shown on the <a href="https://github.com/Pedrofariaeva/claudito-releases/releases/latest">latest release page</a>.</p>
+    </div>
+    <div class="card">
+      <h3>macOS / Linux (Terminal)</h3>
+      <pre>(curl -fsSL https://github.com/Pedrofariaeva/claudito-releases/releases/download/vX.Y.Z/claudito-external-vX.Y.Z-macos.tar.gz -o claudito.tar.gz || curl -fsSL https://gitlab.com/Pedrofariaeva/claudito-releases/-/raw/main/claudito-macos.tar.gz -o claudito.tar.gz) && tar -xzf claudito.tar.gz && cd claudito-external-vX.Y.Z && ./install.sh</pre>
+      <p class="hint">Same here — <b>vX.Y.Z</b> comes from the <a href="https://github.com/Pedrofariaeva/claudito-releases/releases/latest">latest release page</a>.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="tutorial"><div class="wrap">
+  <h2>The first 10 minutes</h2>
+  <p class="lede">Claudito ships with a guided tutorial: it tells you what to type, then checks that it actually happened. This is the shape of a first run.</p>
+  <ol class="steps">
+    <li>Open a terminal inside your research folder and type <code>clt</code>. Claudito starts a session there.</li>
+    <li>Type <code>new project</code>. Claudito creates the project structure: <code>Project plan/</code>, <code>Documents/</code>, <code>references/</code>.</li>
+    <li>Drop your abstract into <code>Documents/abstract.txt</code>. Claudito confirms the project now has a working abstract.</li>
+    <li>Type <code>harvest</code> with your topic. Claudito searches the publisher databases and downloads the papers into <code>references/</code>, organised by theme, with a BibTeX entry for each.</li>
+    <li>Edit <code>Project plan/Project.txt</code> — the master document. Lines starting with <code>//</code> are private notes that never appear in the output.</li>
+    <li>Type <code>build</code>. Claudito compiles the plan into PDF, Word and LaTeX under <code>latex/</code>.</li>
+  </ol>
+</div></section>
+
+<section id="features"><div class="wrap">
+  <h2>What it does</h2>
+  <p class="lede">Built by a working researcher, for the parts of research that eat your evenings.</p>
+  <div class="feat-grid">
+    <div class="feat"><h3>Harvest the literature</h3><p>Searches publisher databases (Scopus, ScienceDirect, Springer, IEEE, ACM, Wiley…) and downloads papers into a library organised by theme — not a downloads-folder pile.</p></div>
+    <div class="feat"><h3>Tame the references</h3><p>Every paper gets a clean BibTeX entry. Duplicates are merged, junk is screened out, and the curated shortlist stays separate from the harvested pool.</p></div>
+    <div class="feat"><h3>One master document</h3><p>Your plan, report or paper lives in a single readable text file. Claudito builds the LaTeX, the PDF and the Word file from it — always in sync, always reproducible.</p></div>
+    <div class="feat"><h3>Teams without tears</h3><p>Invite collaborators, share the project, and sync between machines. Every session is logged; every change is archived before it happens.</p></div>
+    <div class="feat"><h3>A guided first run</h3><p>The built-in tutorial walks you through the first project step by step and checks each step is really done — no manual required.</p></div>
+    <div class="feat"><h3>Free and open</h3><p>No accounts, no subscriptions, no cloud lock-in. Your project stays a plain folder you can zip, git, or carry on a USB stick.</p></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <p><b>claudito</b> — academic research assistant · Free and open source</p>
+  <p><a href="https://github.com/Pedrofariaeva/claudito-releases/releases/latest">Latest release</a> · <a href="https://gitlab.com/Pedrofariaeva/claudito-releases">GitLab mirror</a> · Developed by Pedro Faria, Hainan University 海南大学</p>
+  <p class="kw">Claudito helps researchers with LaTeX document builds, BibTeX reference management, literature harvesting, systematic review organisation and academic project structure on Windows, macOS and Linux.</p>
+</div></footer>
+
+<script>
+(function(){
+  var bodyEl = document.getElementById('termBody');
+  if (!bodyEl) return;
+
+  var SCRIPT = [
+    {cmd:'clt'},
+    {out:[['claudito v2.11.49 — academic research assistant','dim'],
+          ['project: my-research · session started','dim']]},
+    {pause:900},
+    {cmd:'new project'},
+    {out:[['✓ created Project plan/   Documents/   references/   latex/','ok']]},
+    {pause:700},
+    {cmd:'harvest "fall detection elderly indoor" --from-year 2021'},
+    {out:[['✓ 314 papers → references/   (one BibTeX entry each)','ok']]},
+    {pause:700},
+    {cmd:'build'},
+    {out:[['✓ latex/build/main.pdf  — 24 pages, journal layout','ok'],
+          ['✓ latex/build/main.docx — same content, Word file','ok'],
+          ['  no LaTeX written, no formats touched — claudito did both','hi']]},
+    {pause:800},
+    {cmd:'writer'},
+    {out:[['✓ Writer open — write plain text, pick the journal, it formats','ok']]},
+    {pause:700},
+    {cmd:'presentation'},
+    {out:[['✓ latex/build/talk.pdf — slides from the same Project.txt','ok']]}
+  ];
+
+  var cursor = document.createElement('span');
+  cursor.className = 'cursor';
+
+  function addLine(cls){
+    var d = document.createElement('div');
+    d.className = 'tl' + (cls ? ' ' + cls : '');
+    bodyEl.appendChild(d);
+    return d;
+  }
+  function promptLine(){
+    var p = addLine();
+    var ps = document.createElement('span');
+    ps.className = 'prompt'; ps.textContent = '$ ';
+    var ts = document.createElement('span');
+    p.appendChild(ps); p.appendChild(ts); p.appendChild(cursor);
+    return ts;
+  }
+
+  var idx = 0;
+  function next(){
+    if (idx >= SCRIPT.length){
+      promptLine();
+      setTimeout(function(){ bodyEl.innerHTML = ''; idx = 0; next(); }, 6000);
+      return;
+    }
+    var step = SCRIPT[idx++];
+    if (step.pause){ setTimeout(next, step.pause); return; }
+    if (step.cmd){
+      var ts = promptLine(), i = 0;
+      (function tick(){
+        if (i < step.cmd.length){ ts.textContent += step.cmd[i++]; setTimeout(tick, 45 + Math.random()*60); }
+        else { cursor.remove(); setTimeout(next, 450); }
+      })();
+      return;
+    }
+    if (step.out){
+      (function printLine(j){
+        if (j >= step.out.length){ setTimeout(next, 350); return; }
+        addLine(step.out[j][1]).textContent = step.out[j][0];
+        setTimeout(function(){ printLine(j+1); }, 300);
+      })(0);
+    }
+  }
+
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced){
+    SCRIPT.forEach(function(step){
+      if (step.cmd) promptLine().textContent = step.cmd;
+      if (step.out) step.out.forEach(function(l){ addLine(l[1]).textContent = l[0]; });
+    });
+    cursor.remove();
+  } else {
+    next();
+  }
+})();
+</script>
+
+</body>
+</html>
