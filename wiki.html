@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claudito Help Wiki — install, first project, documents, troubleshooting</title>
+<meta name="description" content="Claudito help wiki: installation on Windows, macOS and Linux, your first project, harvesting papers, building LaTeX/Word/PDF, the Writer, privacy, and troubleshooting.">
+<link rel="canonical" href="https://claudito.org/wiki.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a2332;--muted:#5b6776;--blue:#274E88;--blue-soft:#e8eef7;--line:#dde3ea;--bg:#f7f8fa;--card:#fff;--mono:'IBM Plex Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px}
+nav{border-bottom:1px solid var(--line);background:var(--card)}
+nav .wrap{display:flex;align-items:center;gap:24px;padding:14px 24px;max-width:960px}
+.logo{font-weight:700;font-size:20px;color:var(--blue);text-decoration:none}
+nav a{color:var(--muted);text-decoration:none;font-size:14px}
+nav a:hover{color:var(--blue)}
+nav .spacer{flex:1}
+.btn{display:inline-block;background:var(--blue);color:#fff!important;padding:9px 18px;border-radius:6px;font-weight:600;font-size:14px;text-decoration:none}
+header{padding:48px 0 24px}
+h1{font-size:34px;letter-spacing:-0.3px}
+.lede{color:var(--muted);margin-top:8px}
+h2{font-size:22px;margin:36px 0 12px;padding-top:24px;border-top:1px solid var(--line)}
+details{background:var(--card);border:1px solid var(--line);border-radius:8px;margin-bottom:10px;padding:0}
+summary{cursor:pointer;padding:14px 18px;font-weight:600;font-size:15px;list-style:none}
+summary::before{content:"+";color:var(--blue);font-weight:700;margin-right:10px}
+details[open] summary::before{content:"–"}
+details .a{padding:0 18px 16px 40px;color:var(--muted);font-size:14.5px}
+code{font-family:var(--mono);background:var(--blue-soft);padding:1px 6px;border-radius:4px;font-size:13.5px}
+footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);font-size:14px;margin-top:48px}
+footer a{color:var(--blue);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="logo" href="index.html">claudito</a>
+  <a href="index.html#install">Install</a>
+  <a href="index.html#tutorial">First 10 minutes</a>
+  <a href="wiki.html"><b>Help</b></a>
+  <span class="spacer"></span>
+  <a class="btn" href="https://github.com/Pedrofariaeva/claudito-releases/releases/latest">Releases</a>
+</div></nav>
+
+<header><div class="wrap">
+  <h1>Help wiki</h1>
+  <p class="lede">Every question, one answer each. If yours is missing, <a href="https://github.com/Pedrofariaeva/claudito-site/issues" style="color:var(--blue)">open an issue</a> and it gets added.</p>
+</div></header>
+
+<main><div class="wrap">
+
+<h2>Getting started</h2>
+
+<details><summary>What is claudito?</summary><div class="a">A free, open-source <b>command-line</b> assistant for academic research. It lives inside your project folder: it harvests papers from publisher databases, organises your BibTeX references, and builds your documents (LaTeX, Word, PDF). It is not a web app — this website is only the signpost; the tool runs in your terminal.</div></details>
+
+<details><summary>What do I need before installing?</summary><div class="a">Windows 10/11, macOS, or Linux, and five minutes. The one-line installer checks everything else itself and tells you if anything is missing.</div></details>
+
+<details><summary>How do I install it?</summary><div class="a">With the one line for your platform on the <a href="index.html#install" style="color:var(--blue)">install section</a> of the home page. The installer tries GitHub first and falls back to the GitLab mirror automatically, so a blocked network is not a dead end.</div></details>
+
+<details><summary>How do I start a session?</summary><div class="a">Open a terminal inside your research folder and type <code>clt</code>. Everything claudito does happens in that folder — it never wanders elsewhere on your disk.</div></details>
+
+<details><summary>How do I create my first project?</summary><div class="a">Inside the session, type <code>new project</code>. Claudito creates the structure — <code>Project plan/</code>, <code>Documents/</code>, <code>references/</code>, <code>latex/</code> — and a guided tutorial walks you through the first steps, checking that each one is really done.</div></details>
+
+<h2>Everyday use</h2>
+
+<details><summary>Where do I actually write?</summary><div class="a">In <code>Project plan/Project.txt</code> — one plain-text master file. Markdown-style headings, a few LaTeX fragments if you want them, and lines starting with <code>//</code> for private notes that never appear in the output. You never write LaTeX unless you choose to.</div></details>
+
+<details><summary>How do I get my PDF, Word and LaTeX files?</summary><div class="a">Type <code>build</code>. Claudito compiles the master file into <code>latex/build/main.pdf</code>, a Word file, and the LaTeX source — all three from the same text, always in sync.</div></details>
+
+<details><summary>What is the Writer?</summary><div class="a">Type <code>writer</code> and a local writing window opens in your browser (still offline, still your machine). You write plain text, pick a journal or conference template from the list, and claudito applies the formatting — you never touch the journal's style rules.</div></details>
+
+<details><summary>Can it make slides?</summary><div class="a">Yes — type <code>presentation</code> and claudito builds a slide deck as PDF from the same master document. Same content, another format, no PowerPoint.</div></details>
+
+<details><summary>How does paper harvesting work?</summary><div class="a">Type <code>harvest</code> with your topic, and claudito searches the publisher databases (Scopus, ScienceDirect, Springer, IEEE, ACM, Wiley…), downloads the papers into <code>references/</code> organised by theme, and creates a clean BibTeX entry for each. The curated shortlist stays separate from the harvested pool.</div></details>
+
+<details><summary>How do I update claudito?</summary><div class="a">Claudito checks for new releases and can update itself. You can always re-run the latest install line instead — your projects are never touched by an update.</div></details>
+
+<h2>Privacy and safety</h2>
+
+<details><summary>Does anything leave my computer?</summary><div class="a">Only literature-search queries go out, to the publisher databases you asked to search. Your text, your references and your builds stay on your machine. There is no account, no telemetry, no cloud.</div></details>
+
+<details><summary>What happens if something goes wrong mid-edit?</summary><div class="a">Claudito archives <code>Project.txt</code> before every change — the <code>Project plan/archive/</code> folder is a full history of snapshots. You can always go back; nothing is ever overwritten without a copy.</div></details>
+
+<details><summary>Can I put my project folder under git or Dropbox?</summary><div class="a">Yes — a claudito project is a plain folder. Version it, zip it, sync it, carry it on a USB stick. Claudito also has its own team sync if you prefer to keep everything inside the tool.</div></details>
+
+<h2>Troubleshooting</h2>
+
+<details><summary>Something behaved oddly — where do I look first?</summary><div class="a">In <code>clauditoArchive/logs/</code> inside the project. Every session is logged there, including what claudito did and why. Most mysteries end in those files.</div></details>
+
+<details><summary>How do I report a problem or ask for a feature?</summary><div class="a">Open an issue on the <a href="https://github.com/Pedrofariaeva/claudito-site/issues" style="color:var(--blue)">claudito-site repository</a>. Describe what you typed, what you expected, and what happened — a copy of the relevant lines from <code>clauditoArchive/logs/</code> helps enormously.</div></details>
+
+</div></main>
+
+<footer><div class="wrap">
+  <p><b>claudito</b> — academic research assistant · Free and open source</p>
+  <p><a href="index.html">Home</a> · <a href="https://github.com/Pedrofariaeva/claudito-releases/releases/latest">Latest release</a> · Developed by Pedro Faria, Hainan University 海南大学</p>
+</div></footer>
+
+</body>
+</html>
